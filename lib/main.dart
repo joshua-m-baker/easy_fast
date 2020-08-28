@@ -1,10 +1,16 @@
 import 'package:easy_fast/history.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'buttonPage.dart';
 import 'historyPage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => HistoryModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,14 +35,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
-  static EatingHistory eatingHistory = new EatingHistory();
 
   final List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 1: Business',
     ),
-    new ButtonPage(history: eatingHistory),
-    new HistoryPage(history: eatingHistory),
+    new ButtonPage(),
+    new HistoryPage(),
   ];
 
   void _onItemTapped(int index) {
