@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 import 'buttonPage.dart';
 import 'historyPage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HistoryState historyState = HistoryState();
+  await historyState.initializationDone;
   runApp(
     ChangeNotifierProvider(
-      create: (context) => HistoryModel(),
+      create: (context) => historyState,
       child: MyApp(),
     ),
   );

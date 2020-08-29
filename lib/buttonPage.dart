@@ -1,6 +1,5 @@
 import 'package:easy_fast/history.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ButtonPage extends StatelessWidget {
@@ -10,17 +9,17 @@ class ButtonPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Consumer<HistoryModel>(
+          Consumer<HistoryState>(
             builder: (context, history, child) {
               return Text(
-                'Last Ate: ' + DateFormat("hh:mm").format(history.mostRecent),
+                'Last Ate: ' + history.displayLast(),
                 style: Theme.of(context).textTheme.headline4,
               );
             },
           ),
           MaterialButton(
             onPressed:
-                Provider.of<HistoryModel>(context, listen: false).newEntry,
+                Provider.of<HistoryState>(context, listen: false).newEntry,
             color: Colors.blue,
             textColor: Colors.white,
             child: Icon(
