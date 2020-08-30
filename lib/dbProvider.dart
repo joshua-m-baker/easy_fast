@@ -32,8 +32,7 @@ mixin HistoryStorageProvider {
   }
 
   Future<int> delete(int id) async {
-    return await db.delete(History.tableName,
-        where: '$History.columnId = ?', whereArgs: [id]);
+    return await db.delete(History.tableName, where: 'id = ?', whereArgs: [id]);
   }
 
   Future close() async => db.close();

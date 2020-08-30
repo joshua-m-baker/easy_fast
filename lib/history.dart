@@ -7,7 +7,7 @@ import 'historyModel.dart';
 
 class HistoryState extends ChangeNotifier with HistoryStorageProvider {
   List<History> _history;
-  UnmodifiableListView<History> get history => UnmodifiableListView(_history);
+  List<History> get history => _history;
   int get length => _history != null ? _history.length : 0;
 
   Future _initFuture;
@@ -26,11 +26,14 @@ class HistoryState extends ChangeNotifier with HistoryStorageProvider {
   void newEntry() async {
     //_history.add(DateTime.now());
     History newHistory = new History(timestamp: DateTime.now());
-    print(newHistory);
     await super.insert(newHistory);
-    print(newHistory);
     _history.add(newHistory);
 
+    notifyListeners();
+  }
+
+  void deleteEntry(int id) {
+    super.delete(id);
     notifyListeners();
   }
 
