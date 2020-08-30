@@ -1,16 +1,17 @@
-import 'package:easy_fast/history.dart';
+import 'package:easy_fast/buttonPage.dart';
+import 'package:easy_fast/historyPage.dart';
+import 'package:easy_fast/providers/databaseProvider.dart';
+import 'package:easy_fast/providers/eatingRecordProvider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'buttonPage.dart';
-import 'historyPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HistoryState historyState = HistoryState();
-  await historyState.initializationDone;
+  DatabaseProvider dbProvider = DatabaseProvider();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => historyState,
+      create: (context) => EatingRecordProvider(dbProvider),
       child: MyApp(),
     ),
   );
@@ -41,10 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 1: Business',
+      'Placeholder 1',
     ),
     new ButtonPage(),
-    new HistoryPage(),
+    //new HistoryPage(),
+    Text(
+      'Placeholder 3',
+    ),
   ];
 
   void _onItemTapped(int index) {
