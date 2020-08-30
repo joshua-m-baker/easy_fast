@@ -25,6 +25,14 @@ class EatingRecordProvider extends ChangeNotifier {
     return record;
   }
 
+  Future<EatingRecord> deleteById(int id) async {
+    final db = await databaseProvider.db();
+    await db.delete(EatingRecordDao.tableName,
+        where: EatingRecordDao.columnId + " = ?", whereArgs: [id]);
+    notifyListeners();
+    return Future(null);
+  }
+
   Future<List<EatingRecord>> getRecords() async {
     final db = await databaseProvider.db();
     List<Map> maps = await db.query(EatingRecordDao.tableName);
@@ -42,15 +50,4 @@ class EatingRecordProvider extends ChangeNotifier {
 
     return null;
   }
-
-  // Future<Todo> getTodo(int id) async {
-  //   List<Map> maps = await db.query(tableTodo,
-  //       columns: [columnId, columnDone, columnTitle],
-  //       where: '$columnId = ?',
-  //       whereArgs: [id]);
-  //   if (maps.length > 0) {
-  //     return Todo.fromMap(maps.first);
-  //   }
-  //   return null;
-  // }
 }

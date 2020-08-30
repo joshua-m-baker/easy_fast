@@ -45,10 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
       'Placeholder 1',
     ),
     new ButtonPage(),
-    //new HistoryPage(),
-    Text(
-      'Placeholder 3',
-    ),
+    new HistoryPage(),
   ];
 
   void _onItemTapped(int index) {

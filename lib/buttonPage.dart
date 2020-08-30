@@ -14,7 +14,7 @@ class TimeDisplay extends StatelessWidget {
     );
   }
 
-  getDisplay(Future data) {
+  Widget getDisplay(Future data) {
     return FutureBuilder<EatingRecord>(
         future: data,
         builder: (BuildContext context, AsyncSnapshot<EatingRecord> snapshot) {
