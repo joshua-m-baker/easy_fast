@@ -6,6 +6,7 @@ class DatabaseProvider {
   static final _instance = DatabaseProvider._internal();
   static DatabaseProvider get = _instance;
   bool isInitialized = false;
+  final String dbName = 'easy_fast.db';
   Database _db;
 
   //singleton pattern
@@ -22,10 +23,11 @@ class DatabaseProvider {
 
   Future _init() async {
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, EatingRecordDao.dbName);
+    String path = join(databasesPath, dbName);
 
     _db = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
+      await db.execute(EatingRecordDao().createTableQuery);
       await db.execute(EatingRecordDao().createTableQuery);
     });
     isInitialized = true;

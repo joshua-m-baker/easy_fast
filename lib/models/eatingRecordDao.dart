@@ -2,7 +2,6 @@ import 'package:easy_fast/models/dao.dart';
 import 'package:easy_fast/models/eatingRecord.dart';
 
 class EatingRecordDao implements Dao<EatingRecord> {
-  static final String dbName = 'easy_fast.db';
   static final String tableName = 'history';
   static final String columnId = 'id';
   static final String columnTimestamp = 'timestamp';

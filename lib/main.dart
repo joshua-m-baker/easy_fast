@@ -2,6 +2,7 @@ import 'package:easy_fast/buttonPage.dart';
 import 'package:easy_fast/historyPage.dart';
 import 'package:easy_fast/providers/databaseProvider.dart';
 import 'package:easy_fast/providers/eatingRecordProvider.dart';
+import 'package:easy_fast/schedulePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,9 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
 
   final List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Placeholder 1',
-    ),
+    new SchedulePicker(),
     new ButtonPage(),
     new HistoryPage(),
   ];
