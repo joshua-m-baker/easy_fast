@@ -1,4 +1,5 @@
 import 'package:easy_fast/models/eatingRecordDao.dart';
+import 'package:easy_fast/models/scheduleDao.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -28,7 +29,7 @@ class DatabaseProvider {
     _db = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
       await db.execute(EatingRecordDao().createTableQuery);
-      await db.execute(EatingRecordDao().createTableQuery);
+      await db.execute(ScheduleDao().createTableQuery);
     });
     isInitialized = true;
   }
